@@ -40,15 +40,21 @@ class ProductsImport extends Command
      */
     public function handle()
     {
-        //AQUI RECEBEMOS O ID POR PARAMETRO
-        $id = $this->option('id');
+        //AQUI RECEBEMOS O ID POR PARAMETRO E CHAMAMOS A FUNÇÃO
+        $this->import($this->option('id'));
+    }
+
+    public function import($id = null)
+    {
+        $this->info("Iniciando a importação, favor aguarde.");
 
         //AQUI RECEBEMOS OS DADOS DA API EXTERNA
         $response = Http::get("https://fakestoreapi.com/products/$id");
         $data = json_decode($response->body());
 
         if($data == null){
-            echo "Produto não encontrado";
+            $this->info("Produto não encontrado");
+            $this->newLine();
             exit;
         } 
 
@@ -74,6 +80,7 @@ class ProductsImport extends Command
             $new_product->save();
         }
 
-        echo "Importação finalizada.";
+        $this->info("Importação finalizada.");
+        $this->newLine();
     }
 }
