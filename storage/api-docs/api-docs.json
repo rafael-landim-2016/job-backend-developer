@@ -1,0 +1,400 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api Loja de Produtos",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/products": {
+            "get": {
+                "tags": [
+                    "Listagem"
+                ],
+                "summary": "Todos os produtos",
+                "description": "Retorna todos os produtos",
+                "operationId": "6d8ae74dcafe19c4813904d4ea9e4c57",
+                "responses": {
+                    "200": {
+                        "description": "OK, retorna uma lista de produtos.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": [
+                                        {
+                                            "id": "1",
+                                            "name": "Curso de Laravel",
+                                            "price": 160,
+                                            "description": "Curso de 60 horas",
+                                            "category": "Cursos",
+                                            "image_url": null,
+                                            "created_at": "2022-11-12T19:50:30.000000Z",
+                                            "updated_at": "2022-11-12T19:50:30.000000Z"
+                                        },
+                                        {
+                                            "id": "2",
+                                            "name": "Curso de Flutter",
+                                            "price": 200,
+                                            "description": "Curso de 36 horas",
+                                            "category": "Cursos",
+                                            "image_url": null,
+                                            "created_at": "2022-11-12T19:50:30.000000Z",
+                                            "updated_at": "2022-11-12T19:50:30.000000Z"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Listagem"
+                ],
+                "summary": "Buscar produtos com filtro",
+                "description": "Retorna todos os produtos com a possibilidade de filtrar por qualquer item da tabela",
+                "operationId": "96ecb34e05e263ed01889b0710aaf6ef",
+                "requestBody": {
+                    "description": "Informações do filtro",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Laptops"
+                                    },
+                                    "price": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "109.95"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK, retorna uma lista de produtos.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": [
+                                        {
+                                            "id": "1",
+                                            "name": "Curso de Laravel",
+                                            "price": 160,
+                                            "description": "Curso de 60 horas",
+                                            "category": "Cursos",
+                                            "image_url": null,
+                                            "created_at": "2022-11-12T19:50:30.000000Z",
+                                            "updated_at": "2022-11-12T19:50:30.000000Z"
+                                        },
+                                        {
+                                            "id": "2",
+                                            "name": "Curso de Flutter",
+                                            "price": 200,
+                                            "description": "Curso de 36 horas",
+                                            "category": "Cursos",
+                                            "image_url": null,
+                                            "created_at": "2022-11-12T19:50:30.000000Z",
+                                            "updated_at": "2022-11-12T19:50:30.000000Z"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao buscar pelos produtos, verifique os filtros e tente novamente"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Criação"
+                ],
+                "summary": "Inserir um novo produto",
+                "description": "Insere um novo produto no banco de dados",
+                "operationId": "f017165c530779c0384c0d3158fb1ffe",
+                "requestBody": {
+                    "description": "Informações do filtro",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Nome do produto aqui"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": "199.99"
+                                    },
+                                    "description": {
+                                        "type": "text",
+                                        "format": "text",
+                                        "example": "Descrição do produto aqui"
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Categoria do produto aqui"
+                                    },
+                                    "image_url": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK, retorna o produto cadastrado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "id": "1",
+                                        "name": "Curso de Laravel",
+                                        "price": 160,
+                                        "description": "Curso de 60 horas",
+                                        "category": "Cursos",
+                                        "image_url": null,
+                                        "created_at": "2022-11-12T19:50:30.000000Z",
+                                        "updated_at": "2022-11-12T19:50:30.000000Z"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Erros de validação, verifique a resposta."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao cadastrar o produto."
+                    }
+                }
+            }
+        },
+        "/api/products/{id} ": {
+            "get": {
+                "tags": [
+                    "Listagem"
+                ],
+                "summary": "Pegar um produto por id",
+                "description": "Retorna o produto com o id pesquisado",
+                "operationId": "0411f7b1707771502e9bf0c507c54e74",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do produto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK, retorna um objeto com os dados do produto.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "id": "1",
+                                        "name": "Curso de Laravel",
+                                        "price": 160,
+                                        "description": "Curso de 60 horas",
+                                        "category": "Cursos",
+                                        "image_url": null,
+                                        "created_at": "2022-11-12T19:50:30.000000Z",
+                                        "updated_at": "2022-11-12T19:50:30.000000Z"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Não existe um produto com o id informado."
+                    }
+                }
+            }
+        },
+        "/api/get-products-without-photo": {
+            "get": {
+                "tags": [
+                    "Listagem"
+                ],
+                "summary": "Todos os produtos que não tem foto",
+                "description": "Retorna todos os produtos sem foto",
+                "operationId": "53e89c780cde27d5c3b831c9f407b3c6",
+                "responses": {
+                    "200": {
+                        "description": "OK, retorna uma lista de produtos.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": [
+                                        {
+                                            "id": "1",
+                                            "name": "Curso de Laravel",
+                                            "price": 160,
+                                            "description": "Curso de 60 horas",
+                                            "category": "Cursos",
+                                            "image_url": null,
+                                            "created_at": "2022-11-12T19:50:30.000000Z",
+                                            "updated_at": "2022-11-12T19:50:30.000000Z"
+                                        },
+                                        {
+                                            "id": "2",
+                                            "name": "Curso de Flutter",
+                                            "price": 200,
+                                            "description": "Curso de 36 horas",
+                                            "category": "Cursos",
+                                            "image_url": null,
+                                            "created_at": "2022-11-12T19:50:30.000000Z",
+                                            "updated_at": "2022-11-12T19:50:30.000000Z"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/products/{id}": {
+            "put": {
+                "tags": [
+                    "Atualização"
+                ],
+                "summary": "Editar um produto",
+                "description": "Editar um produto no banco de dados",
+                "operationId": "14b6ff17cc6ce7298a06271a8bc89539",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do produto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Informações do filtro",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Nome do produto aqui"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": "199.99"
+                                    },
+                                    "description": {
+                                        "type": "text",
+                                        "format": "text",
+                                        "example": "Descrição do produto aqui"
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Categoria do produto aqui"
+                                    },
+                                    "image_url": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK, retorna o produto cadastrado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "id": "1",
+                                        "name": "Curso de Laravel",
+                                        "price": 160,
+                                        "description": "Curso de 60 horas",
+                                        "category": "Cursos",
+                                        "image_url": null,
+                                        "created_at": "2022-11-12T19:50:30.000000Z",
+                                        "updated_at": "2022-11-12T19:50:30.000000Z"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Erros de validação, verifique a resposta."
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro ao cadastrar o produto."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Exclusão"
+                ],
+                "summary": "Buscar produtos com filtro",
+                "description": "Retorna todos os produtos com a possibilidade de filtrar por qualquer item da tabela",
+                "operationId": "3dda9543e42196cc1ff7b18d2c9f9357",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do produto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK, retorna uma mensagem de sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": "Produto deletado com sucesso"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Produto não encontrado na base de dados."
+                    }
+                }
+            }
+        }
+    }
+}
